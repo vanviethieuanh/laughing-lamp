@@ -2,23 +2,22 @@
     import { AllGistInfo } from './api'
     import BlogItems from './components/BlogItems.svelte'
 
+    import { locale } from 'svelte-i18n'
+    import _ from './i18n'
+
+    locale.set('en')
+
     let AllGistPromise = AllGistInfo()
 </script>
 
 <main>
-    <h1>Hello!</h1>
-
     {#await AllGistPromise}
-        <p>...waiting</p>
+        <p>{$_('general.loading')}</p>
     {:then blogs}
         {#each blogs as blog}
-            <BlogItems
-                title={blog.langs[0].title}
-                createdTime={blog.createdTime}
-                description={blog.langs[0].description}
-            />
+            <BlogItems data={blog} />
         {:else}
-            <li>Empty list</li>
+            <p>{$_('general.emptyBlog')}</p>
         {/each}
     {:catch error}
         <p style="color: red">{error.message}</p>

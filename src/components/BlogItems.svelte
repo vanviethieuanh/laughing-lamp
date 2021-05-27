@@ -1,11 +1,14 @@
 <script>
-    export let title
-    export let description
-    export let createdTime
+    import { onMount } from 'svelte'
+
+    export let data
+
+    onMount(async () => {
+        const res = await fetch(gist_url)
+        console.log(res)
+    })
 </script>
 
 <article>
-    <h1>{title}</h1>
-    <p>{description}</p>
-    <p>{createdTime}</p>
+    <h1>{data.url}</h1>
 </article>

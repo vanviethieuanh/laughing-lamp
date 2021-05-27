@@ -1,0 +1,12 @@
+{
+    "general":{
+        "loading":"Just a sec ...",
+        "emptyBlog":"There is no blog yet ..."
+    },
+
+    "home":{
+        "sidePannel":{
+            "about":"about me"
+        }
+    }
+}

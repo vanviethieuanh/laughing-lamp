@@ -15,17 +15,10 @@ export async function AllGistInfo() {
     const json = await response.json()
 
     // filter to get blog
-    const blogs = json.filter((b) => b.description == '#gist_blog')
-    const blogs_info = await Promise.all(
-        blogs.map(async (b) => {
-            let result = await GetBlogConfig(b.files['config.json'].raw_url)
-            result.createdTime = new Date(b.created_at).toLocaleDateString()
-            return result
-        })
-    )
+    const blogs = json.filter((b) => b.description == 'gist_blog')
+    console.log(blogs)
 
-    console.log(blogs_info)
-    return blogs_info
+    return blogs
 }
 
 export async function GetBlogConfig(url) {

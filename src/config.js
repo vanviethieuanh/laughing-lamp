@@ -1,6 +1,6 @@
 module.exports = {
     username: 'vanviethieuanh',
-    defaultLanguage: 'vi',
+    defaultLanguage: 'en',
 
     catelogies: [
         {

@@ -8,6 +8,4 @@ dictionary.set({
     vi: vi,
 })
 
-locale.set('en')
-
 export default _

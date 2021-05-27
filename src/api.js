@@ -15,8 +15,9 @@ export async function AllGistInfo() {
     const json = await response.json()
 
     // filter to get blog
-    const blogs = json.filter((b) => b.description == 'gist_blog')
-    console.log(blogs)
+    const blogs = json.filter((b) =>
+        b.description.split(' ').includes('gist_blog')
+    )
 
     return blogs
 }

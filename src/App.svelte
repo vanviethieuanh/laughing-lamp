@@ -1,13 +1,16 @@
 <script>
+    import { language } from './store'
     import { AllGistInfo } from './api'
     import BlogItems from './components/BlogItems.svelte'
 
     import { locale } from 'svelte-i18n'
     import _ from './i18n'
 
-    locale.set('en')
-
     let AllGistPromise = AllGistInfo()
+
+    const unsubscribe = language.subscribe((lang) => {
+        locale.set(lang)
+    })
 </script>
 
 <main>
@@ -15,7 +18,7 @@
         <p>{$_('general.loading')}</p>
     {:then blogs}
         {#each blogs as blog}
-            <BlogItems data={blog} />
+            <BlogItems url={blog.url} />
         {:else}
             <p>{$_('general.emptyBlog')}</p>
         {/each}

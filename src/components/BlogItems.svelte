@@ -7,10 +7,6 @@
     let blog = {}
     let extract = {}
 
-    let title = ''
-    let description = ''
-
-    let source = ''
     let created = 'now'
 
     onMount(async () => {
@@ -28,7 +24,7 @@
         created = new Date(blog.created_at).toLocaleDateString()
 
         // Extract title and description from markdown
-        source = blog.files[`${$language}.md`].content
+        const source = blog.files[`${$language}.md`].content
         let contents = source
             .split('\n')
             .filter((e) => e)

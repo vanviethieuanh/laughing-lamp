@@ -21,13 +21,3 @@ export async function AllGistInfo() {
 
     return blogs
 }
-
-export async function GetBlogConfig(url) {
-    const requestOptions = {
-        method: 'GET',
-        redirect: 'follow',
-    }
-    let response = await fetch(url, requestOptions)
-
-    return await response.json()
-}

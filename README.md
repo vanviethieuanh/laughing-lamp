@@ -16,13 +16,8 @@ This is a project that help you create a blog website with simple configuration,
 ### How to write a blog ?
 
 1. Go to the gist
-<<<<<<< HEAD
 2. Create a **public** gist with description is `gist_blog`
 3. Create a file name `en.md` .You can change it what ever language alias you like, for example `vi.md` for Vietnamese post. But remember you must have the `defaultLanguage` (which can change in `src/config.js`) markdown file for the default language of your blog.
-=======
-2. Create a public gist with description is `gist_blog`
-3. Create a file name `en.md` .You can change it what ever language alias you like, for example vi.md for 🇻🇳 Vietnamese post. But remember you must have the `defaultLanguage` (which can change in `src/config.js`) markdown file for the default language of your blog.
->>>>>>> 8d40d616187a53b0d71b727b5f2a64e99053be7a
 
 ### Rendering
 

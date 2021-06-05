@@ -1,5 +1,6 @@
 <script>
-    import { language } from './store'
+    import { language, title } from './store'
+
     import { AllGistInfo } from './api'
     import BlogItems from './components/BlogItems.svelte'
 
@@ -13,15 +14,20 @@
     })
 </script>
 
+<svelte:head>
+    <title>{$title}</title>
+</svelte:head>
 <main>
     {#await AllGistPromise}
         <p>{$_('general.loading')}</p>
     {:then blogs}
-        {#each blogs as blog}
-            <BlogItems url={blog.url} />
-        {:else}
-            <p>{$_('general.emptyBlog')}</p>
-        {/each}
+        <div class="blogs">
+            {#each blogs as blog}
+                <BlogItems url={blog.url} />
+            {:else}
+                <p>{$_('general.emptyBlog')}</p>
+            {/each}
+        </div>
     {:catch error}
         <p style="color: red">{error.message}</p>
     {/await}
@@ -29,22 +35,13 @@
 
 <style>
     main {
-        text-align: center;
-        padding: 1em;
-        max-width: 240px;
-        margin: 0 auto;
+        max-width: 1024px;
+
+        padding: 24px 12px;
     }
 
-    h1 {
-        color: #ff3e00;
-        text-transform: uppercase;
-        font-size: 4em;
-        font-weight: 100;
-    }
-
-    @media (min-width: 640px) {
-        main {
-            max-width: none;
-        }
+    .blogs {
+        display: flex;
+        flex-direction: column;
     }
 </style>

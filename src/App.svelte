@@ -44,7 +44,7 @@
 
         display: grid;
         grid-template-columns: auto 300px;
-        gap: 20px;
+        gap: 24px;
     }
 
     .blogs {

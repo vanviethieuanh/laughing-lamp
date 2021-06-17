@@ -82,7 +82,7 @@
     .sideBar {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 12px;
     }
 
     .sideBar > div {
@@ -165,6 +165,8 @@
     }
 
     .categories {
+        margin-top: 6px;
+
         display: grid;
         gap: 6px;
     }

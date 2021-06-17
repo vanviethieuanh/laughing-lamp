@@ -10,10 +10,8 @@
     let user = UserInfo()
     let lang = defaultLanguage
 
-    let filter = {}
-    filter.categories = categories
-
-    let select = []
+    let selectedCategories = []
+    let search = ''
 
     const unsubscribe = language.subscribe((lang) => {
         locale.set(lang)
@@ -44,14 +42,15 @@
             class="search-bar"
             type="text"
             placeholder={$_('home.sidePannel.filter.searchBarPlaceholder')}
+            bind:value={search}
         />
         <div class="categories">
-            {#each filter.categories as category}
+            {#each categories as category}
                 <input
                     id={category.alias}
                     type="checkbox"
-                    bind:group={select}
-                    value={category}
+                    bind:group={selectedCategories}
+                    value={category.alias}
                 />
                 <label class="check" for={category.alias}>
                     <div>

@@ -9,7 +9,13 @@
             "loading":{
                 "waiting":"waiting ..."
             },
-            "about":"about"
+            "user":
+            {
+                "about":"about"
+            },
+            "filter":{
+                "searchBarPlaceholder":"What are you looking for ?"
+            }
         }
     }
 }

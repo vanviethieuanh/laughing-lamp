@@ -3,11 +3,30 @@ module.exports = {
     defaultLanguage: 'en',
     staticTitle: 'Laughing Lamp Blog',
 
-    catelogies: [
+    categories: [
         {
             alias: 'share',
-            vi: 'Chia sẻ',
-            en: 'Sharing, Though',
+            icon: 'heart',
+            title: {
+                en: 'Sharing, Though',
+                vi: 'Chia sẻ',
+            },
+        },
+        {
+            alias: 'photography',
+            icon: 'aperture',
+            title: {
+                en: 'Photography',
+                vi: '',
+            },
+        },
+        {
+            alias: 'technology',
+            icon: 'coffee',
+            title: {
+                en: 'Technology',
+                vi: 'Chia sẻ',
+            },
         },
     ],
 }

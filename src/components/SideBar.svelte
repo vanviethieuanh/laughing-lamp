@@ -1,16 +1,28 @@
 <script>
     import { language } from '../store'
+    import { categories, defaultLanguage } from '../config'
+    import { UserInfo } from '../api'
 
     import { locale } from 'svelte-i18n'
+    import { onMount } from 'svelte'
     import _ from '../i18n'
+
+    let user = UserInfo()
+    let lang = defaultLanguage
+
+    let filter = {}
+    filter.categories = categories
+
+    let select = []
 
     const unsubscribe = language.subscribe((lang) => {
         locale.set(lang)
+        lang = lang
     })
 
-    import { UserInfo } from '../api'
-
-    let user = UserInfo()
+    onMount(() => {
+        feather.replace()
+    })
 </script>
 
 <div class="sideBar">
@@ -24,25 +36,49 @@
                 <b class="name">{userInfo.name}</b>
                 <p class="username">{userInfo.login}</p>
             </div>
-            <a class="about" href="about">{$_('home.sidePannel.about')}</a>
+            <a class="about" href="about">{$_('home.sidePannel.user.about')}</a>
         {/await}
     </div>
     <div class="filter">
-        <div class="search-bar">
-            <input type="text" />
-            <button class="search" />
+        <input
+            class="search-bar"
+            type="text"
+            placeholder={$_('home.sidePannel.filter.searchBarPlaceholder')}
+        />
+        <div class="categories">
+            {#each filter.categories as category}
+                <input
+                    id={category.alias}
+                    type="checkbox"
+                    bind:group={select}
+                    value={category}
+                />
+                <label class="check" for={category.alias}>
+                    <div>
+                        <div class="icon">
+                            <i data-feather={category.icon} />
+                        </div>
+                        <p>{category.title[`${lang}`]}</p>
+                    </div>
+                </label>
+            {/each}
         </div>
-        <!-- <div class="categories">
-            <div class="programming">
-                <div class="icon">
-                    <i data-feather="circle" />
-                </div>
-            </div>
-        </div> -->
     </div>
 </div>
 
 <style scoped>
+    .feather {
+        --size: 24px;
+
+        width: var(--size);
+        height: var(--size);
+        stroke: currentColor;
+        stroke-width: 1.6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill: none;
+    }
+
     .sideBar {
         display: flex;
         flex-direction: column;
@@ -52,21 +88,18 @@
     .sideBar > div {
         background-color: white;
 
-        padding: 0 17px;
-
         border-radius: var(--radius);
         box-shadow: var(--shadow);
-
-        display: flex;
-        align-items: center;
     }
 
     .author {
+        align-items: center;
+
         display: flex;
         flex-direction: row;
 
+        padding: 0 17px;
         gap: 12px;
-
         height: 70px;
     }
 
@@ -105,5 +138,90 @@
         font-size: 12px;
 
         opacity: 0.6;
+    }
+    .filter {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 12px;
+    }
+
+    .filter .search-bar {
+        border: none;
+        outline: none;
+
+        background-color: var(--white-1);
+        border-radius: var(--radius);
+        height: 44px;
+        width: 100%;
+
+        padding-left: 14px;
+    }
+
+    .filter .search-bar::placeholder {
+        font-size: 14px;
+        color: var(--black-3);
+    }
+
+    .categories {
+        display: grid;
+        gap: 6px;
+    }
+
+    .check {
+        cursor: pointer;
+        position: relative;
+        -webkit-tap-highlight-color: transparent;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .check > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .check > div .icon {
+        --size: 36px;
+
+        background-color: var(--white-1);
+
+        display: grid;
+        place-items: center;
+
+        border-radius: var(--radius);
+
+        width: var(--size);
+        height: var(--size);
+
+        color: var(--black-1);
+    }
+
+    .check > div p {
+        padding: 0 12px;
+        margin: 0;
+
+        user-select: none;
+        -ms-user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+
+        font-size: 14px;
+        color: var(--black-2);
+    }
+
+    .categories input[type='checkbox'] {
+        display: none;
+    }
+
+    .categories input[type='checkbox']:checked + .check .icon {
+        background-color: var(--main);
+
+        color: white;
+    }
+    .categories input[type='checkbox']:checked + .check p {
+        color: var(--black-1);
     }
 </style>

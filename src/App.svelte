@@ -1,8 +1,9 @@
 <script>
     import { language, title } from './store'
-
     import { AllGistInfo } from './api'
+
     import BlogItems from './components/BlogItems.svelte'
+    import SideBar from './components/SideBar.svelte'
 
     import { locale } from 'svelte-i18n'
     import _ from './i18n'
@@ -31,6 +32,8 @@
     {:catch error}
         <p style="color: red">{error.message}</p>
     {/await}
+
+    <SideBar />
 </main>
 
 <style>
@@ -38,6 +41,10 @@
         max-width: 1024px;
 
         padding: 24px 12px;
+
+        display: grid;
+        grid-template-columns: auto 300px;
+        gap: 20px;
     }
 
     .blogs {

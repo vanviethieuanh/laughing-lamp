@@ -6,7 +6,10 @@
 
     "home":{
         "sidePannel":{
-            "about":"about me"
+            "loading":{
+                "waiting":"waiting ..."
+            },
+            "about":"about"
         }
     }
 }

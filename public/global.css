@@ -9,6 +9,7 @@
     --radius: 8px;
 
     --shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    --padding: 24px 12px;
 }
 
 html,

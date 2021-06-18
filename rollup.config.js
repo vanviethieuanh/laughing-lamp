@@ -5,6 +5,7 @@ import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 import css from 'rollup-plugin-css-only'
 import json from '@rollup/plugin-json'
+import styles from 'rollup-plugin-css-only'
 
 const production = !process.env.ROLLUP_WATCH
 
@@ -60,6 +61,8 @@ export default {
         resolve({
             browser: true,
             dedupe: ['svelte'],
+            // Include our installed package, instead of the built in version
+            preferBuiltins: false,
         }),
         commonjs(),
 
@@ -74,10 +77,10 @@ export default {
         // If we're building for production (npm run build
         // instead of npm run dev), minify
         production && terser(),
-        json({
-            compact: true,
-        }),
+        json(),
+        styles(),
     ],
+
     watch: {
         clearScreen: false,
     },

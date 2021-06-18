@@ -17,5 +17,11 @@
                 "searchBarPlaceholder":"What are you looking for ?"
             }
         }
+    },
+    "blog":{
+        "elements":{
+            "back":"Home",
+            "postedPrompt":"Posted at"
+        }
     }
 }

@@ -4,6 +4,7 @@
     import { username } from '../config'
 
     export let url
+    export let id
 
     let blog = {}
     let extract = {}
@@ -38,19 +39,30 @@
     })
 </script>
 
-<article class="article" author={username}>
-    <div class="thumbnail">
-        <img src="https://source.unsplash.com/3LTht2nxd34/240x240/" alt="" />
-    </div>
-    <div class="content">
-        <h1 class="title">{extract.title}</h1>
-        <p class="description">{extract.description}</p>
-        <p class="created-at">{created}</p>
-    </div>
-</article>
+<a href="./#/blog/{id}">
+    <article class="article" author={username}>
+        <div class="thumbnail">
+            <img
+                src="https://source.unsplash.com/3LTht2nxd34/240x240/"
+                alt=""
+            />
+        </div>
+        <div class="content">
+            <h1 class="title">{extract.title}</h1>
+            <p class="description">{extract.description}</p>
+            <p class="created-at">{created}</p>
+        </div>
+    </article>
+</a>
 
 <style>
+    a {
+        text-decoration: none;
+    }
+
     article {
+        cursor: pointer;
+
         background: white;
         border-radius: var(--radius);
 
@@ -75,6 +87,10 @@
         height: 100%;
         padding: 12px;
         padding-right: 24px;
+    }
+
+    .content {
+        user-select: none;
     }
 
     img {
